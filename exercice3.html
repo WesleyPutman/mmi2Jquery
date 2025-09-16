@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="fr">
+<head>
+	<meta charset="utf-8"/>
+	<title> LE DOM : ex 3 </title>
+</head>
+<body>
+<h1 id="entete">Liste des eleves de DUT MMI.</h1>
+<ul id="eleves">
+	<li>Alexis</li>
+	<li>Anne</li>
+	<li>Elodie</li>
+	<li>Marie</li>
+	<li>Xavier</li>
+</ul>
+<p>Ceci est un petit document</p>
+<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+<script language="Javascript">
+
+//Jquery each function to write index before li
+$(document).ready(function(){
+	$("li").each(function(index){
+		$(this).prepend(index+1 + " - ");
+	});
+
+	//Jquery to select first li to eleve
+	$("li:first").css("color", "red");
+	
+});
+
+</script>
+</body>
+</html>

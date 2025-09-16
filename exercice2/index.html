@@ -1,0 +1,110 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="style.css">
+    <title>Hello World</title>
+</head>
+<body>
+	<nav>
+		<ul>
+			<li><a href="#">Accueil</a></li>
+			<li><a href="#">A propos</a></li>
+			<li><a href="#">Articles</a></li>
+			<li><a href="#">Contacts</a></li>
+		</ul>
+	</nav>
+	<p>Ce texte est affiché en HTML.</p></br>
+	<span id="exemple"></span>
+	<button id="AddCard">AddCard</button>
+	<div class="container-card">
+
+<!--Form input text and any more-->
+		<form action="" method="post">
+			<input type="text" name="name" placeholder="Name">
+			<input type="text" name="firstname" placeholder="Firstname">
+			<input type="text" name="email" placeholder="Email">
+			<input type="text" name="phone" placeholder="Phone">
+			<input type="submit" value="Submit">
+		</form>
+
+	</div>
+	<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+	<script>
+		//jQuerry code for write lorem in the span
+		$(document).ready(function(){
+			$("#exemple").html("Ce texte est affiché en jQuery.");
+			//change the color of the text
+			$("#exemple").css("color", "red");
+			//change background color and size of span
+			$("#exemple").css("background-color", "black");
+			$("#exemple").css("font-size", "20px");
+
+			//when click on page, inverse color of the text and background
+			$(document).click(function(){
+				let color = $("#exemple").css("color");
+				let bgColor = $("#exemple").css("background-color");
+				$("#exemple").css("color", bgColor);
+				$("#exemple").css("background-color", color);
+			});
+			//same things with the keypress event "z"
+			$(document).keypress(function(event){
+				if(event.key == "z"){
+					let color = $("#exemple").css("color");
+					let bgColor = $("#exemple").css("background-color");
+					$("#exemple").css("color", bgColor);
+					$("#exemple").css("background-color", color);
+				}
+			});
+
+			//Function to hidde nav when scroll down and show it when scroll up with a animation movement on behind top border
+			let lastScrollTop = 0;
+let isNavHidden = false;
+
+$(window).scroll(function(){
+    let scrollTop = $(this).scrollTop();
+    console.log(scrollTop);
+    
+    if(scrollTop > lastScrollTop && !isNavHidden){
+        $("nav").stop().animate({top: "-100px"}, 500);
+        isNavHidden = true;
+    } else if(scrollTop < lastScrollTop && isNavHidden){
+        $("nav").stop().animate({top: "0px"}, 500);
+        isNavHidden = false;
+    }
+    
+    lastScrollTop = scrollTop;
+});
+
+			//Function to add a card when click on the button
+			$("#AddCard").click(function(){
+				$(".container-card").append("<div class='card'></div>");
+				//append him a button and some text
+				$(".container-card").children().last().append("<button class='delete'>Delete</button>");
+				$(".container-card").children().last().append("<p>Text</p>");
+				//add a click event on the button to delete the card
+				$(".delete").click(function(){
+					$(this).parent().remove();
+				});
+
+			});
+
+			//pickup form inputs values and write it in html and console
+			$("form").submit(function(event){
+				event.preventDefault();
+				let name = $("input[name='name']").val();
+				let firstname = $("input[name='firstname']").val();
+				let email = $("input[name='email']").val();
+				let phone = $("input[name='phone']").val();
+				$(".container-card").append("<div class='card'></div>");
+				$(".container-card").children().last().append("<p>"+name+"</p>");
+				$(".container-card").children().last().append("<p>"+firstname+"</p>");
+				$(".container-card").children().last().append("<p>"+email+"</p>");
+				$(".container-card").children().last().append("<p>"+phone+"</p>");
+				console.log(name, firstname, email, phone);
+			});
+
+		});
+	</script>
+</body>
+</html>

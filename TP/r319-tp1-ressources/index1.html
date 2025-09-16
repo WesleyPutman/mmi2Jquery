@@ -1,0 +1,53 @@
+<!doctype HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Affichage message.</title>
+    <link href="styles/style1.css" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1>En vente ce mois-ci !</h1>
+    </header>
+    <section>
+        <div class="photo"><img src="img/1.jpg" alt="Bristol 1" title="Steam punk monster"/></div>
+        <div class="photo"><img src="img/2.jpg" alt="Bristol 2" title="City wolf"/></div>
+        <div class="photo"><img src="img/3.jpg" alt="Bristol 3" title="Wave wall"/></div>
+        <div class="photo"><img src="img/4.jpg" alt="Bristol 4" title="Revolution"/></div>
+    </section>
+    <div id="box"></div>
+
+    <!-- Charger la bibliothèque jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    
+    <!-- Placer le code jQuery ici -->
+    <script>
+        $(document).ready(function() {
+            //animate box "#box" to hide to show when land to page
+            $("#box").hide().fadeIn(3000, function(){
+                $("#box").html("<ul><li>Steam punk monster</li><li>City wolf</li><li>Wave wall</li><li>Revolution</li></ul>");
+            });
+            //select "img" and display the title of image under it when hover
+            $("img").hover(function(){
+                var price = Math.floor(Math.random() * 1000);
+                $(this).after("<p>"+$(this).attr("title")+"<br>"+price+"€"+"</p>");
+                //change border of image and padding
+                $(this).css("padding", "20px").css("background-color", "rgba(0,0,0,0.5)");
+                //smooth effect
+                $(this).css("transition", "all 0.5s");
+            }, function(){
+                $(this).next().remove();
+                //remove css change
+                $(this).css("border", "none").css("padding", "0");
+            });
+
+
+
+            
+            
+            
+            
+        });
+    </script>
+</body>
+</html>

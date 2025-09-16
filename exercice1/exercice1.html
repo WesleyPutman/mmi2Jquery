@@ -1,0 +1,33 @@
+﻿<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>m3203 exercice 1</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<div id="corps">	
+		<h1>Revision de JS.</h1>	
+		<div id="un">
+			<h1>Ex1 : Zone de saisie.</h1>
+			<p>Texte : <input type="text" id="saisie" value="texte"/></p>
+			<p><input type="button" id="button" value="OK"/></p>
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+//effacer le champ de saisi au click sur le bouton
+document.getElementById("saisie").addEventListener("click", function(){
+	saisie.value = "";
+}); 
+//get the value of the input field when click on button
+document.getElementById("button").addEventListener("click", function(){
+	let saisie = document.getElementById("saisie");
+	alert(saisie.value);
+	//write this value in the "corps"" div
+	document.getElementById("corps").innerHTML += "<p>"+saisie.value+"</p>";	
+});
+
+	console.log("page chargée !");
+</script>
+</html>
